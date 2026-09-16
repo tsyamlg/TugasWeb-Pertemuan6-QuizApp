@@ -1,0 +1,374 @@
+:root {
+    --notes-yellow: #fff3bf;
+    --notes-card: #ffffff;
+    --notes-border: #fce588;
+    --text-main: #2b2b2b;
+    --text-muted: #6c757d;
+    --correct: #2b8a3e;
+    --incorrect: #c92a2a;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: var(--notes-yellow);
+    color: var(--text-main);
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+    background-image: 
+        radial-gradient(#fcc419 1.2px, transparent 1.2px),
+        radial-gradient(#fcc419 1.2px, var(--notes-yellow) 1.2px);
+    background-size: 40px 40px;
+    background-position: 0 0, 20px 20px;
+}
+
+/* --- Floating Confused Emojis Background --- */
+.notes-bg-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.floating-emoji {
+    position: absolute;
+    width: 110px;
+    height: 110px;
+    opacity: 0.85; /* Dibuat lebih jelas kelihatan */
+    animation: floatEmoji 10s infinite ease-in-out alternate;
+    filter: drop-shadow(0 12px 20px rgba(0, 0, 0, 0.12));
+}
+
+.floating-emoji img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* Posisi dan variasi animasi emoji mengambang di berbagai sudut */
+.fe-1 { top: 12%; left: 10%; animation-delay: 0s; transform: rotate(-15deg); }
+.fe-2 { top: 18%; right: 12%; animation-delay: -2s; transform: rotate(20deg); }
+.fe-3 { bottom: 15%; left: 14%; animation-delay: -4s; transform: rotate(10deg); }
+.fe-4 { bottom: 16%; right: 10%; animation-delay: -1s; transform: rotate(-25deg); }
+.fe-5 { top: 48%; left: 4%; animation-delay: -3s; transform: rotate(5deg); }
+.fe-6 { top: 52%; right: 5%; animation-delay: -2.5s; transform: rotate(-12deg); }
+
+@keyframes floatEmoji {
+    0% { transform: translateY(0px) rotate(0deg) scale(1); }
+    50% { transform: translateY(-35px) rotate(12deg) scale(1.08); }
+    100% { transform: translateY(25px) rotate(-10deg) scale(0.95); }
+}
+
+.wrapper {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* --- Main Card (iPhone Notes Style) --- */
+.main-card {
+    background: var(--notes-card);
+    border: 1px solid rgba(252, 211, 77, 0.5);
+    border-radius: 28px;
+    padding: 40px;
+    width: 100%;
+    max-width: 580px;
+    box-shadow: 0 25px 50px rgba(245, 159, 0, 0.12),
+                0 10px 20px rgba(0, 0, 0, 0.04);
+}
+
+/* Screen Transitions */
+.screen {
+    display: none;
+    opacity: 0;
+    transform: translateY(15px);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.screen.active {
+    display: flex;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.hidden {
+    display: none !important;
+}
+
+.badge-tag {
+    background: #fff9db;
+    border: 1px solid #ffe066;
+    color: #f59f00;
+    padding: 6px 18px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 16px;
+}
+
+.title-gradient {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 10px;
+    color: #212529;
+}
+
+.subtitle {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-bottom: 30px;
+    line-height: 1.5;
+}
+
+/* --- High Score Card --- */
+.high-score-card {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: #fffdf5;
+    border: 1px solid #ffe066;
+    padding: 16px 24px;
+    border-radius: 20px;
+    margin-bottom: 30px;
+    text-align: left;
+    width: 100%;
+    box-shadow: 0 4px 12px rgba(245, 159, 0, 0.05);
+}
+
+.trophy {
+    font-size: 1.8rem;
+}
+
+.hs-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    letter-spacing: 0.5px;
+}
+
+.hs-value {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: #212529;
+}
+
+/* --- Tombol 3D Glowing Kuning Muda --- */
+.btn {
+    width: 100%;
+    padding: 16px 32px;
+    border: none;
+    border-radius: 16px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.25s ease;
+}
+
+.primary-btn {
+    background: linear-gradient(180deg, #ffe066 0%, #fab005 100%);
+    color: #5c3b00;
+    /* Efek 3D dan Glowing Kuning */
+    box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.8), 
+                0 8px 25px rgba(250, 176, 5, 0.5);
+    border: 1px solid #ffd43b;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+.primary-btn:hover {
+    transform: translateY(-3px);
+    background: linear-gradient(180deg, #ffec99 0%, #fcc419 100%);
+    box-shadow: inset 0 2px 6px rgba(255, 255, 255, 0.9), 
+                0 12px 30px rgba(250, 176, 5, 0.7);
+}
+
+.next-btn {
+    background: linear-gradient(180deg, #343a40 0%, #212529 100%);
+    color: #ffffff;
+    box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.2), 
+                0 8px 20px rgba(0, 0, 0, 0.2);
+    border: 1px solid #495057;
+}
+
+.next-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: inset 0 2px 6px rgba(255, 255, 255, 0.3), 
+                0 12px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* Quiz UI Header */
+.quiz-header {
+    width: 100%;
+    margin-bottom: 25px;
+}
+
+.meta-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.tracker-badge {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+.timer-badge {
+    background: #fff9db;
+    border: 1px solid #ffe066;
+    color: #f59f00;
+    padding: 6px 14px;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.progress-track {
+    width: 100%;
+    height: 8px;
+    background: #f1f3f5;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0%;
+    background: #fab005;
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 10px;
+}
+
+/* --- Flashcard Question Box --- */
+.flashcard-container {
+    width: 100%;
+    margin-bottom: 25px;
+}
+
+.flashcard {
+    background: #fffdf5;
+    border: 1px solid #ffe066;
+    border-radius: 20px;
+    padding: 28px 24px;
+    text-align: left;
+    box-shadow: 0 6px 16px rgba(245, 159, 0, 0.08);
+}
+
+.question-text {
+    font-size: 1.15rem;
+    font-weight: 600;
+    line-height: 1.5;
+    color: #212529;
+}
+
+/* --- Options Buttons --- */
+.options-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    margin-bottom: 25px;
+}
+
+.option-btn {
+    width: 100%;
+    padding: 16px 20px;
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 16px;
+    color: var(--text-main);
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-align: left;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+}
+
+.option-btn:hover {
+    background: #fff9db;
+    border-color: #ffe066;
+    transform: translateY(-1px);
+}
+
+.option-btn.correct {
+    background: #ebfbee !important;
+    border-color: #b2f2bb !important;
+    color: var(--correct) !important;
+    font-weight: 700;
+}
+
+.option-btn.incorrect {
+    background: #fff5f5 !important;
+    border-color: #ffc9c9 !important;
+    color: var(--incorrect) !important;
+}
+
+.quiz-footer {
+    width: 100%;
+}
+
+/* Result Screen Specifics */
+.result-badge-icon {
+    font-size: 3.5rem;
+    margin-bottom: 15px;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.score-display-box {
+    background: #fffdf5;
+    border: 1px solid #ffe066;
+    border-radius: 20px;
+    padding: 25px;
+    width: 100%;
+    margin: 20px 0 25px 0;
+    box-shadow: 0 6px 16px rgba(245, 159, 0, 0.08);
+}
+
+.score-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    letter-spacing: 1px;
+}
+
+.score-number {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: #fab005;
+    margin: 5px 0;
+}
+
+.score-status {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+}

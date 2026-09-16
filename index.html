@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Quiz App - Ultra HD Edition</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Background Floating Emojis -->
+    <div class="notes-bg-container">
+    <!-- Floating Emoji 1 -->
+    <div class="floating-emoji fe-1">
+        <svg viewBox="0 0 100 100" width="100%" height="100%">
+            <circle cx="50" cy="50" r="45" fill="#FFD93D" stroke="#E5BE29" stroke-width="3"/>
+            <circle cx="35" cy="40" r="6" fill="#333"/>
+            <circle cx="65" cy="40" r="6" fill="#333"/>
+            <path d="M 35 65 Q 50 50 65 65" fill="none" stroke="#333" stroke-width="5" stroke-linecap="round"/>
+            <text x="70" y="30" font-size="20">❓</text>
+        </svg>
+    </div>
+    <!-- Floating Emoji 2 -->
+    <div class="floating-emoji fe-2">
+        <svg viewBox="0 0 100 100" width="100%" height="100%">
+            <circle cx="50" cy="50" r="45" fill="#FFD93D" stroke="#E5BE29" stroke-width="3"/>
+            <circle cx="35" cy="40" r="6" fill="#333"/>
+            <circle cx="65" cy="40" r="6" fill="#333"/>
+            <path d="M 35 65 Q 50 50 65 65" fill="none" stroke="#333" stroke-width="5" stroke-linecap="round"/>
+            <text x="70" y="30" font-size="20">❓</text>
+        </svg>
+    </div>
+    <!-- Floating Emoji 3 -->
+    <div class="floating-emoji fe-3">
+        <svg viewBox="0 0 100 100" width="100%" height="100%">
+            <circle cx="50" cy="50" r="45" fill="#FFD93D" stroke="#E5BE29" stroke-width="3"/>
+            <circle cx="35" cy="40" r="6" fill="#333"/>
+            <circle cx="65" cy="40" r="6" fill="#333"/>
+            <path d="M 35 65 Q 50 50 65 65" fill="none" stroke="#333" stroke-width="5" stroke-linecap="round"/>
+            <text x="70" y="30" font-size="20">❓</text>
+        </svg>
+    </div>
+    <!-- Floating Emoji 4 -->
+    <div class="floating-emoji fe-4">
+        <svg viewBox="0 0 100 100" width="100%" height="100%">
+            <circle cx="50" cy="50" r="45" fill="#FFD93D" stroke="#E5BE29" stroke-width="3"/>
+            <circle cx="35" cy="40" r="6" fill="#333"/>
+            <circle cx="65" cy="40" r="6" fill="#333"/>
+            <path d="M 35 65 Q 50 50 65 65" fill="none" stroke="#333" stroke-width="5" stroke-linecap="round"/>
+            <text x="70" y="30" font-size="20">❓</text>
+        </svg>
+    </div>
+    <!-- Floating Emoji 5 -->
+    <div class="floating-emoji fe-5">
+        <svg viewBox="0 0 100 100" width="100%" height="100%">
+            <circle cx="50" cy="50" r="45" fill="#FFD93D" stroke="#E5BE29" stroke-width="3"/>
+            <circle cx="35" cy="40" r="6" fill="#333"/>
+            <circle cx="65" cy="40" r="6" fill="#333"/>
+            <path d="M 35 65 Q 50 50 65 65" fill="none" stroke="#333" stroke-width="5" stroke-linecap="round"/>
+            <text x="70" y="30" font-size="20">❓</text>
+        </svg>
+    </div>
+    <!-- Floating Emoji 6 -->
+    <div class="floating-emoji fe-6">
+        <svg viewBox="0 0 100 100" width="100%" height="100%">
+            <circle cx="50" cy="50" r="45" fill="#FFD93D" stroke="#E5BE29" stroke-width="3"/>
+            <circle cx="35" cy="40" r="6" fill="#333"/>
+            <circle cx="65" cy="40" r="6" fill="#333"/>
+            <path d="M 35 65 Q 50 50 65 65" fill="none" stroke="#333" stroke-width="5" stroke-linecap="round"/>
+            <text x="70" y="30" font-size="20">❓</text>
+        </svg>
+    </div>
+</div>
+...
+
+    <div class="wrapper">
+        <div class="main-card">
+            
+            <!-- START SCREEN -->
+            <div id="screen-start" class="screen active">
+                <div class="badge-tag">TUGAS RUTIN 6</div>
+                <h1 class="title-gradient">Notes Quiz</h1>
+                <p class="subtitle">Uji kemampuan web development kamu dengan kuis interaktif ala Notes!</p>
+                
+                <div class="high-score-card">
+                    <span class="trophy">🏆</span>
+                    <div>
+                        <div class="hs-label">HIGH SCORE TERBAIK</div>
+                        <div id="start-high-score" class="hs-value">0 Pts</div>
+                    </div>
+                </div>
+
+                <button id="btn-start" class="btn primary-btn">
+                    Mulai Kuis Sekarang ✨
+                </button>
+            </div>
+
+            <!-- QUIZ SCREEN -->
+            <div id="screen-quiz" class="screen">
+                <div class="quiz-header">
+                    <div class="meta-row">
+                        <span id="question-tracker" class="tracker-badge">Soal 1 / 5</span>
+                        <div class="timer-badge">
+                            <span class="timer-icon">⏱️</span>
+                            <span id="timer">15s</span>
+                        </div>
+                    </div>
+                    <div class="progress-track">
+                        <div id="progress-bar" class="progress-fill"></div>
+                    </div>
+                </div>
+
+                <!-- Flashcard Wrapper -->
+                <div class="flashcard-container">
+                    <div id="flashcard" class="flashcard">
+                        <div class="card-inner">
+                            <h2 id="question-text" class="question-text">Memuat pertanyaan...</h2>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interactive Options -->
+                <div id="options-container" class="options-grid"></div>
+
+                <div class="quiz-footer">
+                    <button id="btn-next" class="btn next-btn hidden">
+                        Lanjut Soal ➔
+                    </button>
+                </div>
+            </div>
+
+            <!-- RESULT SCREEN -->
+            <div id="screen-result" class="screen">
+                <div class="result-badge-icon">🎉</div>
+                <h2 class="title-gradient">Kuis Selesai!</h2>
+                
+                <div class="score-display-box">
+                    <span class="score-label">SKOR AKHIR KAMU</span>
+                    <div id="final-score" class="score-number">0</div>
+                    <p id="score-message" class="score-status">Kerja Hebat!</p>
+                </div>
+
+                <div class="high-score-card">
+                    <span class="trophy">🏆</span>
+                    <div>
+                        <div class="hs-label">REKOR TERTINGGI</div>
+                        <div id="result-high-score" class="hs-value">0 Pts</div>
+                    </div>
+                </div>
+
+                <button id="btn-restart" class="btn primary-btn">
+                    Ulangi Kuis 🔄
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
